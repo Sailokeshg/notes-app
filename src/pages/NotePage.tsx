@@ -54,7 +54,7 @@ const NotePage = () => {
       deleteNote();
     } else if (noteId.id !== "new") {
       updateNote();
-    } else if (noteId.id === "new" && note !== null) {
+    } else if (noteId.id === "new" && note.body!= null) {
       createNote();
     }
     navigate("/");
