@@ -178,7 +178,7 @@ a {
 }
 
 .floating-button:hover {
-  cursor: default;
+  cursor: hand;
   transform: rotate(360deg);
   transition: all 0.3s ease-in-out 0s;
 }
