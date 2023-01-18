@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import notes from "../assets/data";
 import { ReactComponent as ArrrowLeft } from "../assets/arrow-left.svg";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
@@ -10,17 +9,27 @@ const NotePage = () => {
 
   useEffect(() => {
     getNote();
-  }, [noteId]);
+  }, [noteId.id]);
 
   const getNote = async () => {
+    if (noteId === "new") return;
     let res = await fetch(`http://localhost:5000/notes/${noteId.id}`);
     let data = await res.json();
     setNote(data);
   };
-  // let note = notes.find((note) => note.id === parseInt(noteId.id));
+
+  const createNote = async () => {
+    await fetch(`http://localhost:5000/notes/`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ ...note, updated: new Date() }),
+    });
+  };
 
   const updateNote = async () => {
-    await fetch(`http://localhost:5000/notes/${note.id}`, {
+    await fetch(`http://localhost:5000/notes/${noteId.id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -29,19 +38,25 @@ const NotePage = () => {
     });
   };
 
-  const handleSubmit = () => {
-    updateNote();
-    navigate("/");
-  };
-
   const deleteNote = async () => {
-    await fetch(`http://localhost:5000/notes/${note.id}`, {
+    await fetch(`http://localhost:5000/notes/${noteId.id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify(note),
     });
+    navigate("/");
+  };
+
+  const handleSubmit = () => {
+    if (noteId.id !== "new" && !note.body) {
+      deleteNote();
+    } else if (noteId.id !== "new") {
+      updateNote();
+    } else if (noteId.id === "new" && note !== null) {
+      createNote();
+    }
     navigate("/");
   };
 
@@ -53,7 +68,11 @@ const NotePage = () => {
             <ArrrowLeft onClick={handleSubmit} />
           </Link>
         </h3>
-        <button onClick={deleteNote}>Delete</button>
+        {noteId.id !== "new" ? (
+          <button onClick={deleteNote}>Delete</button>
+        ) : (
+          <button onClick={handleSubmit}>Done</button>
+        )}
       </div>
       <textarea
         value={note?.body}

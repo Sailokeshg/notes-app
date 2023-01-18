@@ -2,15 +2,19 @@
   "notes": [
     {
       "id": 1,
-      "body": "Todays Agenda\n\n- Feed fish\n- Play basketball\n- Eat a salad",
-      "updated": "2023-01-18T11:10:57.372Z",
+      "body": "Todays Agenda\n\n- Feed fish\n- Play basketball\n- Playyyy\n",
+      "updated": "2023-01-18T14:45:29.512Z",
       "created": "2021-07-13T21:54:16.235392Z"
     },
     {
-      "id": 2,
-      "body": "Bob from bar down the \n\n- Take out trash\n- Fill the trash",
-      "updated": "2023-01-18T11:49:55.387Z",
-      "created": "2021-07-13T00:17:13.289897Z"
+      "body": "NEW NOTE",
+      "updated": "2023-01-18T14:46:00.729Z",
+      "id": 3
+    },
+    {
+      "body": "NOTEE",
+      "updated": "2023-01-18T14:46:04.562Z",
+      "id": 4
     }
   ]
 }

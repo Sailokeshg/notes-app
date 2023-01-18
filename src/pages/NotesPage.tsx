@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-// import notes from "../assets/data";
+import AddButton from "../components/AddButton";
+
 
 import ListItem from "../components/ListItem";
 
@@ -27,6 +28,7 @@ const NotesPage = () => {
           <ListItem key={note.id} note={note} />
         ))}
       </div>
+      <AddButton />
     </div>
   );
 };
